@@ -16,6 +16,6 @@
    mysqli_close($con);
    
    if(!isset($_SESSION['username'])){
-      header("location:/014/index.php");
+      header("location:/ControlDeIngresos/index.php");
    }
 ?>
