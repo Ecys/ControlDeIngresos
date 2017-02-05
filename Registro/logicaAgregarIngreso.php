@@ -70,7 +70,7 @@ class LogicaAgregarIngreso
 if( isset($_POST['btnDPI']))
 {
 	$dpi = $_POST['txtDPI'];
-	#echo '<script type="text/javascript">alert("'.$dpi.'");</script>';
+	echo '<script type="text/javascript">alert("'.$dpi.'");</script>';
 	$instancia = new LogicaAgregarIngreso();
 	$resultado = $instancia->Ingreso($dpi);
 	echo '<label>'.$resultado.'</label>';

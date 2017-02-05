@@ -1,10 +1,7 @@
 <?php 
-include("../Master/masterpage/cabecera.php"); 
+	include("../Master/masterpage/cabecera.php"); 
+?>
 
-
- ?>
-
- <?php include("LogicaAgregarIngreso.php"); ?>
 <script type="text/javascript" language="javascript" src="js/ajax.js"></script>	
 
 	<section id="four">
@@ -32,7 +29,6 @@ include("../Master/masterpage/cabecera.php");
 			<input type="text" name="txtDPI" value="">
 			<br>
 			<li><input type="submit" class="special" value="Aceptar" name="btnDPI"/></li>
-		</select>
 		</div>
 		</div>
 		</form>
@@ -44,15 +40,11 @@ include("../Master/masterpage/cabecera.php");
 			<input type="text" name="txtCarnet" value="">
 			<br>
 			<li><input type="submit" class="special" value="Aceptar" name="btnCarnet"/></li>
-		</select>
 		</div>
 		</div>
-
-		</form>
-		
-		<!-- Fin de campos -->			
+		</form>			
 	</div>
-	
+	<?php include("LogicaAgregarIngreso.php"); ?>
 </section>
 <?php include("../Master/masterpage/pie.php"); ?>		
 
