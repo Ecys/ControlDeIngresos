@@ -1,5 +1,5 @@
 <?php 
-include_once "../conexion.php";
+		include_once "../conexion.php";
 
 class LogicaAgregarIngreso
 {
@@ -67,16 +67,16 @@ class LogicaAgregarIngreso
 }
 	
 
-if( isset($_POST['btnDPI']))
+if( isset($_POST["btnDPI"]))
 {
-	$dpi = $_POST['txtDPI'];
+	$dpi = $_POST["txtDPI"];
 	echo '<script type="text/javascript">alert("'.$dpi.'");</script>';
 	$instancia = new LogicaAgregarIngreso();
 	$resultado = $instancia->Ingreso($dpi);
-	echo '<label>'.$resultado.'</label>';
+	echo "<label>".$resultado."</label>";
 }
 
-if( isset($_POST['btnCarnet']))
+if( isset($_POST["btnCarnet"]))
 {
 	$carnet = $_POST['txtCarnet'];
 	$instancia = new LogicaAgregarIngreso();
