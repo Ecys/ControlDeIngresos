@@ -1,5 +1,4 @@
 <?php 
-		include_once "../conexion.php";
 
 class LogicaAgregarIngreso
 {
@@ -79,6 +78,7 @@ if( isset($_POST["btnDPI"]))
 if( isset($_POST["btnCarnet"]))
 {
 	$carnet = $_POST['txtCarnet'];
+	echo '<script type="text/javascript">alert("'.$carnet.'");</script>';
 	$instancia = new LogicaAgregarIngreso();
 	$rdpi = $instancia->RecuperarDPI($carnet);
 	if ($rdpi!="")

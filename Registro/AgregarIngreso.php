@@ -1,4 +1,5 @@
 <?php 
+	include('../session.php');
 	include("../Master/masterpage/cabecera.php"); 
 ?>
 
@@ -14,7 +15,7 @@
 		</header>
 	</section>
 
-<?php include("../Master/masterpage/menu.php"); ?>
+<?php include("../Master/masterpage/supermenu.php"); ?>
 
 <section id="four" class="wrapper style2 special">
 	<div class="inner">
@@ -31,9 +32,6 @@
 			<li><input type="submit" class="special" value="Aceptar" name="btnDPI"/></li>
 		</div>
 		</div>
-		</form>
-
-		<form name="frmIngresoCarnet" action=""  method="post">
 		<DIV ALIGN=left><h4> Ingrese el numero de Carnet </h4> </DIV>
 		<div class="12u$">
 		<div class="select-wrapper">
