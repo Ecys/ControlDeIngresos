@@ -3,6 +3,8 @@ include("../Master/masterpage/cabecera.php");
 
 
  ?>
+
+ <?php include("LogicaAgregarIngreso.php"); ?>
 <script type="text/javascript" language="javascript" src="js/ajax.js"></script>	
 
 	<section id="four">
@@ -45,8 +47,9 @@ include("../Master/masterpage/cabecera.php");
 		</select>
 		</div>
 		</div>
+
 		</form>
-		<?php include("LogicaAgregarIngreso.php"); ?>
+		
 		<!-- Fin de campos -->			
 	</div>
 	

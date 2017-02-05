@@ -22,9 +22,9 @@ class LogicaAgregarIngreso
 
 		$sql = "insert into Registro(alumno,fecha,laboratorio,tipo) values(".$dpi.", '".$now->format('Y-m-d H:i:s')."',013,1)";
 
-		#echo '<script type="text/javascript">alert("'.$sql.'");</script>';
+		echo '<script type="text/javascript">alert("'.$sql.'");</script>';
 
-		if (mysqli_query($conexion,$sql) === TRUE) 
+		if (mysqli_query($conexion,$sql)) 
 		{
 			$mensaje = "Ingreso Exitoso" ;
 		} 
