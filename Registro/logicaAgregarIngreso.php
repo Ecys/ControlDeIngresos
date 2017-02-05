@@ -7,9 +7,11 @@ class LogicaAgregarIngreso
     public function Ingreso($dpi)
     {
         $mensaje="";
-		$conexion = new mysqli(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-		if($conexion->connect_error){
-				die("coneccion fallida".$conexion->connect_error);
+		$conexion = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
+
+		if(!$conexion)
+		{
+				die("coneccion fallida ".mysqli_connect_error() . PHP_EOL);
 				header("Location: index.php");
 				exit();	
 		} 
@@ -22,37 +24,43 @@ class LogicaAgregarIngreso
 
 		#echo '<script type="text/javascript">alert("'.$sql.'");</script>';
 
-		if ($conexion->query($sql) === TRUE) {
+		if (mysqli_query($conexion,$sql) === TRUE) 
+		{
 			$mensaje = "Ingreso Exitoso" ;
-		} else {
+		} 
+		else 
+		{
 			$mensaje = "El documento de identificacion no existe en la base de datos";
 		}	
+
+		mysqli_close($conexion);
         return $mensaje;
     }
 
     public function RecuperarDPI($carnet)
     {
     	$mensaje="";
-		$conexion = new mysqli(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-		if($conexion->connect_error){
-				die("coneccion fallida".$conexion->connect_error);
+		$conexion = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
+		
+		if(!$conexion)
+		{
+				die("coneccion fallida ".mysqli_connect_error() . PHP_EOL);
 				header("Location: index.php");
 				exit();	
 		} 
 
-		
-
 		$sql = "select DPI from Estudiante where Carnet=".$carnet.";";
 
-		if ($result = $conexion->query($sql) and $result->num_rows > 0) 
+		if ($result = mysqli_query($conexion,$sql) and mysqli_num_rows($result) > 0) 
 		{ 
-			while($obj = $result->fetch_object())
+			while($obj = mysqli_fetch_object($result))
 				{ 
 					$dpi = $obj->DPI;
 					$mensaje = $dpi;
 				} 
 		}
 
+		mysqli_close($conexion);
         return $mensaje;
     }
             
@@ -65,7 +73,7 @@ if( isset($_POST['btnDPI']))
 	#echo '<script type="text/javascript">alert("'.$dpi.'");</script>';
 	$instancia = new LogicaAgregarIngreso();
 	$resultado = $instancia->Ingreso($dpi);
-	echo '<script type="text/javascript">alert("'.$resultado.'");</script>';
+	echo '<label>'.$resultado.'</label>';
 }
 
 if( isset($_POST['btnCarnet']))
@@ -76,11 +84,11 @@ if( isset($_POST['btnCarnet']))
 	if ($rdpi!="")
 	{
 		$resultado = $instancia->Ingreso($rdpi);
-	    echo '<script type="text/javascript">alert("'.$resultado.'");</script>';
+	    echo "<label>".$resultado."</label>";
 	}
 	else
 	{
-		echo '<script type="text/javascript">alert("El numero de carnet no existe en la base de datos");</script>';	
+		echo "<label>El numero de carnet no existe en la base de datos</label>";	
 	}
 	
 }

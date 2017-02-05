@@ -1,6 +1,6 @@
 <?php 
 include("../Master/masterpage/cabecera.php"); 
-include("LogicaAgregarIngreso.php");
+
 
  ?>
 <script type="text/javascript" language="javascript" src="js/ajax.js"></script>	
@@ -9,7 +9,7 @@ include("LogicaAgregarIngreso.php");
 		<!-- Header -->
 		<header id="header">
 			<h1><a >
-			Ingreso
+			REGISTRAR INGRESO
 		</a></h1>
 		<a href="#nav">Menu</a>
 		</header>
@@ -20,7 +20,7 @@ include("LogicaAgregarIngreso.php");
 <section id="four" class="wrapper style2 special">
 	<div class="inner">
 		<header class="major narrow">
-			<h2>Ingreso</h2>
+			<h2>REGISTRAR INGRESO</h2>
 		</header>
 		<!-- Aqui cuerpo y atributos -->
 		<form name="frmIngresoDPI" action=""  method="post">
@@ -46,6 +46,7 @@ include("LogicaAgregarIngreso.php");
 		</div>
 		</div>
 		</form>
+		<?php include("LogicaAgregarIngreso.php"); ?>
 		<!-- Fin de campos -->			
 	</div>
 	

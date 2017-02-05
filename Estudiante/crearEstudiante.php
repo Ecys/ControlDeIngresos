@@ -1,7 +1,7 @@
 <?php 
 include('../session.php');
 include("../Master/masterpage/cabecera.php");
-include("../Estudiante/logicaCrearEstudiante.php");
+
  ?>
 
 	<section id="four">
@@ -50,25 +50,29 @@ include("../Estudiante/logicaCrearEstudiante.php");
 		<!--input type="text" name="Carrera" value=""><br-->
 
 		<?php
-			mysql_select_db(DB_NAME);
-			$result = mysql_query("SELECT codigo, detalle FROM Carrera") 	or die(mysql_error());
-			if (mysql_num_rows($result)!=0)
+			#mysql_select_db(DB_NAME);
+			$con = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME); 
+			$result = mysqli_query($con,"SELECT codigo, detalle FROM Carrera") 	or die(mysql_error());
+			if (mysqli_num_rows($result)!=0)
 			{
 				echo '<select name="Carrera" id="Carrera">
 	      		<option value=" " selected="selected">Seleccione una carrera</option>';
-		   		while($drop_2 = mysql_fetch_array( $result ))
+		   		while($drop_2 = mysqli_fetch_array( $result ))
 				{
 			  		echo '<option value="'.$drop_2['codigo'].'">'.$drop_2['detalle'].'</option>';
 				}
-			echo '</select>'
+			echo '</select>';
+
+			mysqli_close($con);
            
 
 		?>
-		
+		<br>
 		<input type="submit" name="nuevo" value="agregar">
 		</form> 
 		<!-- Fin de campos -->			
 	</div>
+	<?php include("../Estudiante/logicaCrearEstudiante.php"); ?>
 </section>
 
 <?php include("../Master/masterpage/pie.php");}?>		

@@ -6,7 +6,7 @@
 
 		<!-- Header -->
 		<header id="header">
-				<h1><a > Ingreso	</a></h1>
+				<h1><a > REGISTRAR INGRESOS	</a></h1>
 			<a href="#nav">Menu</a>
 		</header>
 

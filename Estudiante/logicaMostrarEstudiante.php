@@ -6,10 +6,11 @@ class ObjetoEstudiante
 	public function BuscarEstudiante($carnet,$id)
 	{
 		$mensaje="";
-		$conexion = new mysqli(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-		if($conexion->connect_error)
+		$conexion = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
+		
+		if(!$conexion)
 		{
-			die("coneccion fallida".$con->connect_error);
+			die("coneccion fallida. Error: ".mysqli_connect_error() . PHP_EOL);
 			header("Location: index.php");
 			exit();
 		}
@@ -20,7 +21,7 @@ class ObjetoEstudiante
 			$sql = "Select * from Estudiante  where DPI = ".$carnet.";";
 
 
-		if ($result = $conexion->query($sql) and $result->num_rows > 0) { 
+		if ($result = mysqli_query($conexion,$sql) and mysqli_num_rows($result) > 0) { 
 
 			echo '<section id="four" class="wrapper style2 special">';
 			echo '<div class="inner">';
@@ -30,7 +31,7 @@ class ObjetoEstudiante
 			echo '<form class="form-inline" role="form" method="post" action="">';
 		    echo '<table  WIDTH=50%>';
 
-			while($obj = $result->fetch_object())
+			while($obj = mysqli_fetch_object($result))
 			{ 
 				$nombres = $obj->Nombres;
 				$apellidos = $obj->Apellidos;
@@ -106,26 +107,26 @@ class ObjetoEstudiante
 			echo "</form>";	
 			echo "</div>";
 			echo "</section>";
-		}
-		
-		if($conexion->query($sql)===TRUE)
-		{
-			$mensaje = "Estudiante agregado exitosamente";
+
+			$mensaje = "";
 		}
 		else
 		{
-			$mensaje = $sql;
+			$mensaje = "No se ha encontrado ninguna coincidencia";
 		}
+
+		mysqli_close($conexion);
 		return $mensaje;
 	}
 
 	public function EliminarEstudiante($carnet)
 	{
 		$mensaje="";
-		$conexion = new mysqli(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-		if($conexion->connect_error)
+		$conexion = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
+		
+		if(!$conexion)
 		{
-			die("coneccion fallida".$con->connect_error);
+			die("coneccion fallida. Error: ".mysqli_connect_error() . PHP_EOL);
 			header("Location: index.php");
 			exit();
 		}
@@ -133,22 +134,24 @@ class ObjetoEstudiante
 		
 		$sql = "delete from Estudiante  where Carnet = ".$carnet.";";
 		
-		if($conexion->query($sql)===TRUE)
+		if(mysqli_query($conexion,$sql))
 		{
 			$mensaje = "Estudiante eliminardo exitosamente";
 		}
 		else
 		{
-			$mensaje = $sql;
+			$mensaje = "No se ha podido eliminar al estudiante";
 		}
+
+		mysqli_close($conexion);
 		return $mensaje;
 	}
 
 	public function ModificarEstudiante($carnet,$nombres,$apellidos,$correo,$telefono,$direccion,$carrera)
 	{
 		$mensaje="";
-		$conexion = new mysqli(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-		if($conexion->connect_error)
+		$conexion = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
+		if(!$conexion)
 		{
 			die("coneccion fallida".$con->connect_error);
 			header("Location: index.php");
@@ -158,14 +161,15 @@ class ObjetoEstudiante
 		
 		$sql = "update Estudiante SET Nombres='".$nombres."', Apellidos='".$apellidos."', Correo='".$correo."', Telefono=".$telefono.", Direccion='".$direccion."', Carrera=".$carrera." where Carnet = ".$carnet.";";
 		
-		if($conexion->query($sql)===TRUE)
+		if(mysqli_query($conexion,$sql))
 		{
 			$mensaje = "Estudiante modificado exitosamente";
 		}
 		else
 		{
-			$mensaje = $sql;
+			$mensaje = "Ha ocurrido un error";
 		}
+		mysqli_close($conexion);
 		return $mensaje;
 	}
 	
@@ -177,7 +181,7 @@ if(isset($_POST["btnCarnet"]))
 	$carnet=$_POST["txtCarnet"];
 	$obj = new ObjetoEstudiante();
 	$resultado = $obj->BuscarEstudiante($carnet,1);
-	echo '<script type="text/javascript">alert("'.$resultado.'");</script>';
+	echo '"'.$resultado.'"';
 }
 
 if(isset($_POST["btnDPI"]))
@@ -185,7 +189,7 @@ if(isset($_POST["btnDPI"]))
 	$dpi=$_POST["txtDPI"];
 	$obj = new ObjetoEstudiante();
 	$resultado = $obj->BuscarEstudiante($dpi,2);
-	echo '<script type="text/javascript">alert("'.$resultado.'");</script>';
+	echo '"'.$resultado.'"';
 }
 
 if(isset($_POST["btnEliminar"]))
@@ -194,7 +198,7 @@ if(isset($_POST["btnEliminar"]))
 	#echo '<script type="text/javascript">alert("'.$carnet.'");</script>';
 	$obj = new ObjetoEstudiante();
 	$resultado = $obj->EliminarEstudiante($carnet);
-	echo '<script type="text/javascript">alert("'.$resultado.'");</script>';
+	echo '"'.$resultado.'"';
 }
 
 if(isset($_POST["btnGuardar"]))
@@ -209,7 +213,7 @@ if(isset($_POST["btnGuardar"]))
 	#echo '<script type="text/javascript">alert("'.$carnet.'");</script>';
 	$obj = new ObjetoEstudiante();
 	$resultado = $obj->ModificarEstudiante($carnet,$nombres,$apellidos,$correo,$telefono,$direccion,$carrera);
-	echo '<script type="text/javascript">alert("'.$resultado.'");</script>';
+	echo '"'.$resultado.'"';
 }
 					
 ?>

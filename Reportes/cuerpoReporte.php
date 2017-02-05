@@ -1,7 +1,7 @@
 <section id="four" class="wrapper style2 special">
 	<div class="inner">
 		<header class="major narrow">
-			<h2>Ingreso</h2>
+			<h2>Generar Reportes</h2>
 		</header>
 	<form action="" method="POST">
 		<table>

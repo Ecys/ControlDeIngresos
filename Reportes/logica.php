@@ -6,11 +6,14 @@ class ObjetoReporte
 	public function GenerarReporte($inicio,$fin)
 	{
 		$mensaje="";
-		$conexion = new mysqli(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
-		if($conexion->connect_error)
+		$conexion = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
+
+		if(!$conexion)
 		{
-			die("coneccion fallida".$con->connect_error);
-			header("Location: index.php");
+			echo "Error: Unable to connect to MySQL." . PHP_EOL;
+    		echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+    		echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+    		header("Location: index.php");
 			exit();
 		}
 
@@ -20,8 +23,8 @@ class ObjetoReporte
 				Inner Join Laboratorio on Laboratorio.id = Registro.laboratorio
 				Inner Join Tipo on Tipo.id=Registro.tipo where fecha > '".$inicio."' and fecha < '".$fin."' order by fecha";
 
-
-		if ($result = $conexion->query($sql) and $result->num_rows > 0) { 
+	    $count = 0;
+		if ($result = mysqli_query($conexion,$sql) and mysqli_num_rows($result) > 0) { 
 
 			echo '<section id="four" class="wrapper style2 special">';
 			echo '<div class="inner">';
@@ -43,7 +46,9 @@ class ObjetoReporte
 
 			echo '</tr>';
 
-			while($obj = $result->fetch_object())
+			$count = 0;
+
+			while($obj = mysqli_fetch_object($result))
 			{ 
 				$fecha = $obj->fecha;
 				$Carnet = $obj->Carnet;
@@ -63,7 +68,8 @@ class ObjetoReporte
 				echo '<td>' .$Carrera.'</td>';
 				echo '<td>' .$Laboratorio.'</td>';
 				echo '<td>' .$Tipo.'</td>';
-				echo "</tr>";					
+				echo "</tr>";
+				$count += 1;					
 			} 
 			echo '</table>';
 			echo "</form>";	
@@ -71,14 +77,16 @@ class ObjetoReporte
 			echo "</section>";
 		}
 		
-		if($conexion->query($sql)===TRUE)
+		if($count>0)
 		{
-			$mensaje = "Estudiante agregado exitosamente";
+			$mensaje = "Reporte Generado Exitosamente";
 		}
 		else
 		{
-			$mensaje = $sql;
+			$mensaje = "No hay registros en el reporte o hay un problema con la conexion";
 		}
+
+		mysqli_close($conexion);
 		return $mensaje;
 	}
 
@@ -94,7 +102,8 @@ if(isset($_POST["btnCrearReporte"]))
 	#echo '<script type="text/javascript">alert("'.$inicio.'");</script>';
 	$obj = new ObjetoReporte();
 	$resultado = $obj->GenerarReporte($inicio,$fin);
-	echo '<script type="text/javascript">alert("'.$resultado.'");</script>';
+	#echo '<script type="text/javascript">alert("'.$resultado.'");</script>';
+	echo '<label>'.$resultado.'</label>';
 }
 					
 ?>
