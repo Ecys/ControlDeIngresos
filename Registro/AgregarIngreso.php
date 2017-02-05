@@ -4,7 +4,6 @@
 ?>
 
 <script type="text/javascript" language="javascript" src="js/ajax.js"></script>	
-
 	<section id="four">
 		<!-- Header -->
 		<header id="header">
@@ -14,9 +13,6 @@
 		<a href="#nav">Menu</a>
 		</header>
 	</section>
-
-<?php include("../Master/masterpage/supermenu.php"); ?>
-
 <section id="four" class="wrapper style2 special">
 	<div class="inner">
 		<header class="major narrow">
@@ -42,7 +38,9 @@
 		</div>
 		</form>			
 	</div>
-	<?php include("LogicaAgregarIngreso.php"); ?>
 </section>
+
+<?php include("../Registro/logicaAgregarIngreso.php"); ?>
+<?php include("../Master/masterpage/supermenu.php"); ?>
 <?php include("../Master/masterpage/pie.php"); ?>		
 
