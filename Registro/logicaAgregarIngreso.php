@@ -21,7 +21,7 @@ class LogicaAgregarIngreso
 
 		$sql = "insert into Registro(alumno,fecha,laboratorio,tipo) values(".$dpi.", '".$now->format('Y-m-d H:i:s')."',013,1)";
 
-		echo '<script type="text/javascript">alert("'.$sql.'");</script>';
+		#echo '<script type="text/javascript">alert("'.$sql.'");</script>';
 
 		if (mysqli_query($conexion,$sql)) 
 		{
@@ -69,7 +69,7 @@ class LogicaAgregarIngreso
 if( isset($_POST["btnDPI"]))
 {
 	$dpi = $_POST["txtDPI"];
-	echo '<script type="text/javascript">alert("'.$dpi.'");</script>';
+	#echo '<script type="text/javascript">alert("'.$dpi.'");</script>';
 	$instancia = new LogicaAgregarIngreso();
 	$resultado = $instancia->Ingreso($dpi);
 	echo "<label>".$resultado."</label>";
@@ -78,7 +78,7 @@ if( isset($_POST["btnDPI"]))
 if( isset($_POST["btnCarnet"]))
 {
 	$carnet = $_POST['txtCarnet'];
-	echo '<script type="text/javascript">alert("'.$carnet.'");</script>';
+	#echo '<script type="text/javascript">alert("'.$carnet.'");</script>';
 	$instancia = new LogicaAgregarIngreso();
 	$rdpi = $instancia->RecuperarDPI($carnet);
 	if ($rdpi!="")

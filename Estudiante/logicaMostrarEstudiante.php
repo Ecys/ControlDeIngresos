@@ -70,7 +70,7 @@ class ObjetoEstudiante
 				echo "</tr>";
 
 				echo "<tr>";
-		  		echo "<td>* Los cambios son irrebersibles</td>";
+		  		echo "<td>* Los cambios son irreversibles</td>";
 				echo "</tr>";
 		  		
 		  		echo "<tr>";
