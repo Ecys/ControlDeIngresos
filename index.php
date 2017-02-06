@@ -60,7 +60,7 @@ if(!isset($_SESSION['username'])) //para saber si existe o no ya la variable de 
 	<!-- Header -->
 	<?php  include("Master/masterpage/cabecera.php"); ?>
 	<header id="header" class="alt">
-		<h1><a href="#">Control Administrativo Laboratorios 013 y 014</a></h1>
+		<h1><a href="#">Control Administrativo Laboratorios 013</a></h1>
 		<a href="#nav">Menu</a>
 	</header>
 

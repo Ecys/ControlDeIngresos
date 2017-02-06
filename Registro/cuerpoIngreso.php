@@ -8,11 +8,6 @@
 		</ul>
 	</form>
 
-	<form action="" method="POST">
-		<ul class="actions">
-			<li><input type="submit" class="special" value="VER" /></li>
-		</ul>
-	</form>
 	
 	
 
