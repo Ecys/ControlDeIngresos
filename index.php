@@ -109,6 +109,8 @@ if(!isset($_SESSION['username'])) //para saber si existe o no ya la variable de 
 		<h2>ECYS</h2>
 		<br/> <br/>
 		<p>ESCUELA DE CIENCIAS Y SISTEMAS</p>
+        <label>BIENVENIDO AL SISTEMA DE ECYS 013</label>
+        <br>
 		<a href="logout.php">Cerrar Sesion</a>
 	</section>
 
